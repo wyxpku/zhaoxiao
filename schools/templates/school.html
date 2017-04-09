@@ -26,34 +26,195 @@
                 <br />
                 <div class="row">
                     <div class="col-md-10">
-                        <h5><span class="align-baseline" id="totalrate" style="display: inline-block;"></span>111 个评价</h5>
+                        <h5><span class="align-baseline" id="totalrate" style="display: inline-block;"></span>,  111 个评价</h5>
                         <h5>&nbsp;{{ school.administration_dept }}, {{ school.location }}, {{ school.level }}</h5>
                     </div>
-                    <div class="col-md-2" W>
-                        <a href="#" class="btn btn-primary mx-auto align-middle" style="display: inline-block">我要评价</a>
+                    <div class="col-md-2">
+                        <a href="/school/{{ school.id }}/review" class="btn btn-primary mx-auto align-middle" style="display: inline-block">我要评价</a>
                     </div>
                 </div>
             </div>
             <div class="card-block">
-                <h4 class="card-title">Special title treatment</h4>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
+                <div class="w-100 row ml-0">
+                    <div class="col-4">
+                        <div class="rate-circle-total text-white bg-primary">
+                            <p>A+</p>
+                        </div>
+                        <h3 class="w-100" style="text-align: center">总评</h3>
+                    </div>
+                    <div class="col-8 row ml-0">
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">学术氛围</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">校园环境</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">食堂伙食</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">宿舍条件</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">行政管理</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">校园设施</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">学术氛围</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">社团活动</p>
+                        </div>
+                        <div class="col-4">
+                            <div class="rate-circle text-white bg-info d-inline-block">
+                                <p>A+</p>
+                            </div>
+                            <p class="d-inline-block ml-1" style="text-align: center">地理位置</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row w-100">
+            <div class="col-3">
+                <ul class="list-group">
+                    <li class="list-group-item justify-content-between">
+                        <span class="align-baseline 5star" style="display: inline-block;"></span>
+                        <span class="badge badge-default badge-pill">14</span>
+                    </li>
+                    <li class="list-group-item justify-content-between">
+                        <span class="align-baseline 4star" style="display: inline-block;"></span>
+                        <span class="badge badge-default badge-pill">2</span>
+                    </li>
+                    <li class="list-group-item justify-content-between">
+                        <span class="align-baseline 3star" style="display: inline-block;"></span>
+                        <span class="badge badge-default badge-pill">1</span>
+                    </li>
+                    <li class="list-group-item justify-content-between">
+                        <span class="align-baseline 2star" style="display: inline-block;"></span>
+                        <span class="badge badge-default badge-pill">1</span>
+                    </li>
+                    <li class="list-group-item justify-content-between">
+                        <span class="align-baseline 1star" style="display: inline-block;"></span>
+                        <span class="badge badge-default badge-pill">1</span>
+                    </li>
+                </ul>
+                <br />
+                <div class="dropdown w-100">
+                    <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        排序
+                    </button>
+                    <div class="dropdown-menu w-100" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="#">评论日期</a>
+                        <a class="dropdown-item" href="#">评分</a>
+                        <a class="dropdown-item" href="#">专业</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-9 row">
+                <div class="reviews col-11 offset-md-1">
+                    <div class="card">
+                        <div class="card-block">
+                            <h5 class="card-title">总评：<span class="align-baseline 5star" style="display: inline-block;"></span></h5>
+                            <div class="card-text">
+                                <p>With supporting text below as a natural lead-in to additional content...</p>
+                            </div>
+                            <div class="card-text">
+                                <p>With supporting text below as a natural lead-in to additional content...</p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                            </div>
+
+                            <button href="#" class="btn btn-sm btn-outline-primary">加载更多</button>
+                        </div>
+                        <div class="card-footer text-muted">
+                            计算机，大一，2 days ago
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <nav class="col-12" aria-label="Page navigation example">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">Previous</a>
+                        </li>
+                        <li class="page-item disabled"><a class="page-link" href="#">Page 1 of 24</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
         {% include 'foot.html' %}
     </div>
     <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="{% static 'js/bootstrap-suggest.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
     <script src="{% static 'js/particles.js' %}"></script>
     <script src="{% static 'js/zhaoxiao.js' %}"></script>
     <script type="text/javascript">
     $(function() {
-
         $("#totalrate").rateYo({
             starWidth: "18px",
             rating: 3.5,
+            readOnly: true
+        });
+        $(".5star").rateYo({
+            starWidth: "18px",
+            rating: 5,
+            readOnly: true
+        });
+        $(".4star").rateYo({
+            starWidth: "18px",
+            rating: 4,
+            readOnly: true
+        });
+        $(".3star").rateYo({
+            starWidth: "18px",
+            rating: 3,
+            readOnly: true
+        });
+        $(".2star").rateYo({
+            starWidth: "18px",
+            rating: 2,
+            readOnly: true
+        });
+        $(".1star").rateYo({
+            starWidth: "18px",
+            rating: 1,
             readOnly: true
         });
 

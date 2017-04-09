@@ -63,8 +63,8 @@ def school_detail(request, id):
 # 评论页面
 
 
-def newreview(request):
-    return render(request, 'review.html')
+def newreview(request, id):
+    return render(request, 'review.html', {'id': id})
 
 # 搜索建议
 

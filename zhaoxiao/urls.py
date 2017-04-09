@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^search/', views.search),
     url(r'^school/(?P<id>[0-9]+)/$', views.school_detail),
     # url(r'^schools/$', views.school_list),
-    url(r'^review/$', views.newreview),
+    url(r'^school/(?P<id>[0-9]+)/review$', views.newreview),
     url(r'^autocomplete/', views.autocomplete),
 ]
