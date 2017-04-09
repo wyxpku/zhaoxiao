@@ -28,6 +28,7 @@
         <p style="text-align: center;">你要找的，就在这里</p>
         <br />
         <br />
+        <br />
         <form class="form-inline align-middle" action="/search">
             <div class="row justify-content-md-center" style="width: 100%">
                 <div class="input-group input-group-lg col-md-6">
@@ -40,18 +41,13 @@
                 <button type="submit" class="btn btn-warning col-md-2"><span style="font-size: 24px">Search</span></button>
             </div>
         </form>
+
     </div>
     {% include 'foot.html' %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap-suggest.js' %}"></script>
-    <script src="{% static 'js/autocomplete.js' %}"></script>
     <script src="{% static 'js/particles.js' %}"></script>
-    <script type="text/javascript">
-    particlesJS.load('particles-js', '/static/particlesjs-config.json', function() {
-        console.log('callback - particles.js config loaded');
-    });
-    </script>
+    <script src="{% static 'js/zhaoxiao.js' %}"></script>
 </body>
-
 </html>

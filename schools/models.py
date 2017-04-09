@@ -12,6 +12,9 @@ class School(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return "/school/%i/" % self.id
+
 
 class Review(models.Model):
     RATING_CHOICES = (

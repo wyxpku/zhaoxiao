@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', views.index),
+    url(r'^about/$', views.about),
     url(r'^search/', views.search),
     url(r'^school/(?P<id>[0-9]+)/$', views.school_detail),
     # url(r'^schools/$', views.school_list),

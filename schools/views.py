@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, JsonResponse
 from schools.models import School, Review
-from django.core import serializers  
+from django.core import serializers
 
 import jieba
 
@@ -10,11 +10,15 @@ def index(request):
     return render(request, 'index.html')
 
 
+# about界面
+def about(request):
+    return render(request, 'about.html')
+
 # 搜索结果页面
 def search(request):
     querystr = request.GET['q']
-    return HttpResponse(querystr)
-    
+    # return HttpResponse(querystr)
+
     keywords = [str(item) for item in jieba.cut(querystr, cut_all=False)]
     keywords.sort(key=lambda x: -len(x))
     print(keywords)
@@ -28,7 +32,15 @@ def search(request):
                 if not school in search_result:
                     search_result.append(school)
 
-    return render(request, 'searchresult.html')
+    return render(
+        request,
+        'searchresult.html',
+        {
+            'query': querystr,
+            "result_num": len(search_result),
+            "schools": search_result,
+        }
+    )
 
 
 # 学校详情页面
@@ -40,19 +52,23 @@ def school_detail(request, id):
             'status': False,
             'info': str(e),
         }
-        return render(request, 'school.html')
+        return render(request, 'school.html', {'school': None})
 
     if request.method == 'GET':
         # serializer = SchoolSerializer(school)
         # retdata = serializer.data
         # retdata['status'] = True
-        return render(request, 'school.html')
+        return render(request, 'school.html', {'school': school})
 
 # 评论页面
+
+
 def newreview(request):
     return render(request, 'review.html')
 
 # 搜索建议
+
+
 def autocomplete(request):
     prefix = request.GET['q']
     search_result = []

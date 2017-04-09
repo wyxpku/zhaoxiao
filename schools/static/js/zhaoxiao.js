@@ -71,3 +71,12 @@ var bsSearch_main = $("input#main-search").bsSuggest({
 }).on('onUnsetSelectValue', function() {
     // console.log("onUnsetSelectValue");
 });
+particlesJS.load('particles-js', '/static/particlesjs-config.json', function() {
+    console.log('callback - particles.js config loaded');
+});
+
+window.onload = function() {
+    var wh = $(document).height();
+    var ww = $(document).width();
+    $(".main-container").css("min-height", wh - 90);
+};

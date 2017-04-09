@@ -6,179 +6,57 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- <link rel="icon" href="../../favicon.ico"> -->
     <title>找校网</title>
     <link rel="icon" href="{% static 'images/logo.ico' %}">
-    <!-- Bootstrap core CSS -->
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/zhaoxiao.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/school.css' %}">
-    <style type="text/css">
-    html,
-    body {
-        /*background: url({% static "images/Graduation.jpg" %}) no-repeat center center fixed;*/
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        height: 100%;
-        /*-webkit-filter: blur(1px);*/
-    }
-    </style>
 </head>
 
 <body>
+    <div id="particles-js"></div>
     {% include 'nav.html' %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="container-fluid main">
-        <div class="jumbotron" style="background-color: #FFFFFF;">
-            <h1>北京大学<small>北京市，海淀区</small></h1>
-            <div class="row">
-                <div class="col-md-6">
-                    <div style="height: 40px; width: 100%;">
-                        <ul class="rate">
-                            <li>☆</li>
-                            <li>☆</li>
-                            <li>☆</li>
-                            <li>☆</li>
-                            <li>☆</li>
-                            <li style="padding-left: 20px;">1,000 reviews</li>
-                        </ul>
+    <div class="container main-container">
+        <br />
+        <div class="card">
+            <div class="card-header">
+                <h1>{{ school.name }}</h1>
+                <br />
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5><span class="align-baseline" id="totalrate" style="display: inline-block;"></span>111 个评价</h5>
+                        <h5>&nbsp;{{ school.administration_dept }}, {{ school.location }}, {{ school.level }}</h5>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <button class="btn btn-primary" style="float: right; width: 100px;">我要评价</button>
-                </div>
-            </div>
-        </div>
-        <div class="overall">
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2" style="background-color: #FFFFFF; min-height: 200px;">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div style="width: 100px; height: 100px; border-radius: 50px; background-color: #009966;position: relative; top: 50px; font-size: 50px; color: white; text-align: center; line-height: 90px; margin: 0 auto;">A+</div>
-                            <p style="text-align: center; font-size: 24px; position: relative; top: 65px;">总评分</p>
-                        </div>
-                        <div class="col-md-8">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">学术氛围</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">校园环境</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">食堂伙食</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">宿舍条件</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">行政管理</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">校园设施</p>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">社团活动</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <div style="width: 60px; height: 60px; border-radius: 30px; background-color: #66cc99;position: relative; top: 30px; font-size: 24px; color: white; text-align: center; line-height: 55px; margin: 0 auto;">A+</div>
-                                    <p style="text-align: center; font-size: 16px; position: relative; top: -10px; left: 75px;">地理位置</p>
-                                </div>
-                            </div>
-                            <br />
-                        </div>
+                    <div class="col-md-2" W>
+                        <a href="#" class="btn btn-primary mx-auto align-middle" style="display: inline-block">我要评价</a>
                     </div>
                 </div>
             </div>
+            <div class="card-block">
+                <h4 class="card-title">Special title treatment</h4>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
         </div>
+        {% include 'foot.html' %}
     </div>
-    {% include 'foot.html' %}
-    <!-- /container -->
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/bootstrap-suggest.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
+    <script src="{% static 'js/particles.js' %}"></script>
+    <script src="{% static 'js/zhaoxiao.js' %}"></script>
     <script type="text/javascript">
-    var bsSearch_nav = $("input#nav_search").bsSuggest({
-        allowNoKeyword: false,
-        multiWord: true,
-        separator: ",",
-        getDataMethod: "url",
-        url: 'http://unionsug.baidu.com/su?p=3&wd=',
-        jsonp: 'cb',
-        showBtn: false,
-        fnProcessData: function(json) {
-            var index, len, data = {
-                value: []
-            };
-            if (!json || !json.s || json.s.length === 0) {
-                return false;
-            }
-            len = json.s.length;
-            for (index = 0; index < len; index++) {
-                data.value.push({
-                    word: json.s[index]
-                });
-            }
-            data.defaults = 'baidu';
-            return data;
-        }
-    }).on('onDataRequestSuccess', function(e, result) {
-        console.log('onDataRequestSuccess: ', result);
-    }).on('onSetSelectValue', function(e, keyword, data) {
-        console.log('onSetSelectValue: ', keyword, data);
-    }).on('onUnsetSelectValue', function() {
-        console.log("onUnsetSelectValue");
-    });
-    var bsSearch_main = $("input#main_search").bsSuggest({
-        allowNoKeyword: false,
-        multiWord: true,
-        separator: ",",
-        getDataMethod: "url",
-        url: 'http://unionsug.baidu.com/su?p=3&wd=',
-        jsonp: 'cb',
-        showBtn: false,
-        fnProcessData: function(json) {
-            var index, len, data = {
-                value: []
-            };
-            if (!json || !json.s || json.s.length === 0) {
-                return false;
-            }
-            len = json.s.length;
-            for (index = 0; index < len; index++) {
-                data.value.push({
-                    word: json.s[index]
-                });
-            }
-            data.defaults = 'baidu';
-            return data;
-        }
-    }).on('onDataRequestSuccess', function(e, result) {
-        console.log('onDataRequestSuccess: ', result);
-    }).on('onSetSelectValue', function(e, keyword, data) {
-        console.log('onSetSelectValue: ', keyword, data);
-    }).on('onUnsetSelectValue', function() {
-        console.log("onUnsetSelectValue");
+    $(function() {
+
+        $("#totalrate").rateYo({
+            starWidth: "18px",
+            rating: 3.5,
+            readOnly: true
+        });
+
     });
     </script>
 </body>
