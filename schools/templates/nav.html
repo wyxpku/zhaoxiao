@@ -1,20 +1,27 @@
-<div class="container">
-    <nav class="navbar navbar-light bg-fade">
+<nav class="navbar navbar-light navbar-toggleable-md">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <a class="navbar-brand" href="/">找校网</a>
-        <form class="form-inline navbar-toggler-right" action="/search">
-            <!-- <input class="form-control mr-sm-2" type="text" placeholder="Search" id="nav_search"> -->
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="输入学校名" id="nav_search" name="q">
-                    <!-- <span class="input-group-addon" id="basic-addon2">Search</span> -->
-                    <!-- <span class="input-group-addon glyphicon glyphicon-search"></span> -->
-                    <div class="input-group-btn">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
-                        <ul class="dropdown-menu dropdown-menu-right"></ul>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">关于</a>
+                </li>
+            </ul>
+            <form class="form-inline navbar-toggler-right" action="/search">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="输入学校名" id="nav_search" name="q">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right"></ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <button class="btn btn-outline-success" type="submit" style="margin-left: 10px">Search</button>
-        </form>
-    </nav>
-</div>
+                <button class="btn btn-outline-warning" type="submit" style="margin-left: 10px">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
