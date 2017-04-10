@@ -10,12 +10,13 @@
     <link rel="icon" href="{% static 'images/logo.ico' %}">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/progressjs.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/zhaoxiao.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/school.css' %}">
     <style type="text/css">
-        .list_item_5star{
-            background: linear-gradient(to right, #CCCCFF 30%, #ffffff 70%);
-        }
+    .list_item_5star {
+        background: linear-gradient(to right, #CCCCFF 30%, #ffffff 70%);
+    }
     </style>
 </head>
 
@@ -104,28 +105,56 @@
         <br />
         <div class="row w-100">
             <div class="col-3 border-top-0 border-left-0 border-bottom-0" style="border: 2px solid gray">
-                <ul class="list-group">
-                    <li class="list-group-item justify-content-between">
-                        <span class="align-baseline 5star" style="display: inline-block;"></span>
-                        <span class="badge badge-default badge-pill">14</span>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        <span class="align-baseline 4star" style="display: inline-block;"></span>
-                        <span class="badge badge-default badge-pill">2</span>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        <span class="align-baseline 3star" style="display: inline-block;"></span>
-                        <span class="badge badge-default badge-pill">1</span>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        <span class="align-baseline 2star" style="display: inline-block;"></span>
-                        <span class="badge badge-default badge-pill">1</span>
-                    </li>
-                    <li class="list-group-item justify-content-between">
-                        <span class="align-baseline 1star" style="display: inline-block;"></span>
-                        <span class="badge badge-default badge-pill">1</span>
-                    </li>
-                </ul>
+                <div class="w-100 mb-1" style="position: relative;">
+                    <div class="progress w-100" style="z-index: -1; height: 40px;">
+                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
+                        <div class="5star d-inline-block" style="margin-top: 10px; float: left;"></div>
+                        <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">11</span></p>
+                    </div>
+                </div>
+                <div class="w-100 mb-1" style="position: relative;">
+                    <div class="progress w-100" style="z-index: -1; height: 40px;">
+                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
+                        <div class="4star d-inline-block" style="margin-top: 10px; float: left;"></div>
+                        <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">111</span></p>
+                    </div>
+                </div>
+                <div class="w-100 mb-1" style="position: relative;">
+                    <div class="progress w-100" style="z-index: -1; height: 40px;">
+                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
+                        <div class="3star d-inline-block" style="margin-top: 10px; float: left;"></div>
+                        <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">111</span></p>
+                    </div>
+                </div>
+                <div class="w-100 mb-1" style="position: relative;">
+                    <div class="progress w-100" style="z-index: -1; height: 40px;">
+                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
+                        <div class="2star d-inline-block" style="margin-top: 10px; float: left;"></div>
+                        <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">1111</span></p>
+                    </div>
+                </div>
+                <div class="w-100 mb-1" style="position: relative;">
+                    <div class="progress w-100" style="z-index: -1; height: 40px;">
+                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        </div>
+                    </div>
+                    <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
+                        <div class="1star d-inline-block" style="margin-top: 10px; float: left;"></div>
+                        <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">11111</span></p>
+                    </div>
+                </div>
                 <br />
                 <div class="dropdown w-100">
                     <button class="btn btn-secondary dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -140,7 +169,47 @@
             </div>
             <div class="col-9 row">
                 <div class="reviews col-11 offset-md-1">
-                    <div class="card">
+                    <p >按日期排序：</p>
+
+                    <div class="card mb-2">
+                        <div class="card-block">
+                            <h5 class="card-title">总评：<span class="align-baseline 5star" style="display: inline-block;"></span></h5>
+                            <div class="card-text">
+                                <p>With supporting text below as a natural lead-in to additional content...</p>
+                            </div>
+                            <div class="card-text">
+                                <p>With supporting text below as a natural lead-in to additional content</p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                            </div>
+                            <button href="#" class="btn btn-sm btn-outline-primary more">加载更多</button>
+                        </div>
+                        <div class="card-footer text-muted">
+                            计算机，大一，2 days ago
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-block">
+                            <h5 class="card-title">总评：<span class="align-baseline 5star" style="display: inline-block;"></span></h5>
+                            <div class="card-text">
+                                <p>With supporting text below as a natural lead-in to additional content...</p>
+                            </div>
+                            <div class="card-text">
+                                <p>With supporting text below as a natural lead-in to additional content</p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                            </div>
+                            <button href="#" class="btn btn-sm btn-outline-primary more">加载更多</button>
+                        </div>
+                        <div class="card-footer text-muted">
+                            计算机，大一，2 days ago
+                        </div>
+                    </div>
+                    <div class="card mb-2">
                         <div class="card-block">
                             <h5 class="card-title">总评：<span class="align-baseline 5star" style="display: inline-block;"></span></h5>
                             <div class="card-text">
@@ -173,8 +242,20 @@
                         </li>
                     </ul>
                 </nav>
+                <br />
+                <br />
+                <br />
+                <br />
+
             </div>
         </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+
         {% include 'foot.html' %}
     </div>
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -182,12 +263,13 @@
     <script src="{% static 'js/bootstrap-suggest.js' %}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
     <script src="{% static 'js/particles.js' %}"></script>
+    <script src="{% static 'js/progress.js' %}"></script>
     <script src="{% static 'js/zhaoxiao.js' %}"></script>
     <script type="text/javascript">
     $(function() {
         $("#totalrate").rateYo({
             starWidth: "18px",
-            rating: {{ school_info.overall_rating__avg }},
+            rating: {{ school_info.overall_rating__avg}},
             readOnly: true
         });
         $(".5star").rateYo({
@@ -230,6 +312,7 @@
             $(".more").html("加载更多");
         }
     });
+    $(".my-mid").css("left", ($(".my-mid").parent().width() - $(".my-mid").width()) / 2);
     </script>
 </body>
 
