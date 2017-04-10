@@ -1,22 +1,25 @@
-.navbar{
+.navbar {
     background-color: #8F77B5;
 }
-footer{
-	/*style="position: absolute; bottom: 0; height: 60px; width: 100%; text-align: center;"*/
-	position: absolute;
-	bottom: 0px;
-	right: 0;
-	height: 60px;
-	/*padding: 30px 15px 0 15px;*/
-	padding-top: 30px;
-	/*padding-bottom: 10px;*/
-	width: 100%;
-	text-align: center;
-	background-color: #f0f0f0;
+
+footer {
+    /*style="position: absolute; bottom: 0; height: 60px; width: 100%; text-align: center;"*/
+    position: absolute;
+    bottom: 0px;
+    right: 0;
+    height: 60px;
+    /*padding: 30px 15px 0 15px;*/
+    padding-top: 30px;
+    /*padding-bottom: 10px;*/
+    width: 100%;
+    text-align: center;
+    background-color: #f0f0f0;
 }
-.form-inline>button{
+
+.form-inline>button {
     margin-left: 10px;
 }
+
 #particles-js {
     width: 100%;
     height: 100%;
@@ -26,11 +29,16 @@ footer{
     z-index: -1;
     position: fixed;
 }
-.main-container{
-	background-color: #ffffff;
-	width: 60%;
-	margin-left: 0;
-	margin-right: 0;
-	position: absolute;
-	left: 20%;
+
+.main-container {
+    background-color: #ffffff;
+    width: 60%;
+    margin-left: 0;
+    margin-right: 0;
+    position: absolute;
+    left: 20%;
+}
+
+.modal{
+	padding-top: 10%;
 }

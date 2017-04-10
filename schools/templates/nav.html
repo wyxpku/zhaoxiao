@@ -7,7 +7,7 @@
         <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
             <ul class="navbar-nav mr-auto mt-2 mt-md-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">关于</a>
+                    <a class="nav-link" href="#aboutus" id="aboutbtn" data-toggle="modal">关于</a>
                 </li>
             </ul>
             <form class="form-inline navbar-toggler-right" action="/search">
@@ -25,3 +25,21 @@
         </div>
     </div>
 </nav>
+<div class="modal fade" id="aboutus">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">关于我们</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                blablablabla...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

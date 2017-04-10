@@ -33,9 +33,8 @@
     padding-top: 12px;
     line-height: 24px;
 }
-
 .list-group-item {
-    background: linear-gradient(to right, #CCCCFF 50%, #ffffff 50%);
+    /*background: linear-gradient(to right, #CCCCFF 50%, #ffffff 50%);*/
     border: 1px solid #bbbbbb;
     margin-bottom: 2px;
 }

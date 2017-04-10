@@ -19,8 +19,138 @@
     {% include 'nav.html' %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container main-container">
-        {{ id }}
-        {% include 'foot.html' %}
+        <br />
+        <div class="card">
+            <div class="card-block">
+                <h1><small>正在评价：</small>{{ school.name }}</h1>
+                <br />
+                <div class="row">
+                    <div class="col-md-10">
+                        <h5><span class="align-baseline 3star" id="totalrate" style="display: inline-block;"></span>,  111 个评价</h5>
+                        <h5>&nbsp;{{ school.administration_dept }}, {{ school.location }}, {{ school.level }}</h5>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ school.get_absolute_url }}" class="btn btn-primary mx-auto align-middle" style="display: inline-block">学校详情</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="row w-100 justify-content-center">
+            <form class="col-11 review" action="{{ school.get_absolute_url }}review/" method="POST">
+                {% csrf_token %}
+                <div class="form-group row w-100">
+                    <label class="col-form-label pt-0 px-3" for="overall_rating">
+                        <h4>总评</h4></label>
+                    <div class="stars-bg">
+                    </div>
+                    <input type="text" class="col-1 invisible" id="overall_rating" value="-1" name="overall_rating">
+                </div>
+                <hr>
+                <div class="form-group w-100">
+                    <label for="review_content" class="col-form-label">
+                        <h4 class="d-inline-block pr-4">你的评价</h4><h6 class="text-mute d-inline-block content-count">现 0 字，不少于 50 字</h6></label>
+                    <textarea class="form-control" id="review_content" rows="6" name="review_content"></textarea>
+                </div>
+                <hr />
+                <div class="row">
+                    <label class="d-block col-12 pb-2">
+                        <h4>分项评分</h4>
+                    </label>
+                    <br>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="academic_rating" class="col-form-label pt-0">
+                            <h5>学术氛围&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="academic_rating" value="-1" name="academic_rating">
+                    </div>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="campus_rating" class="col-form-label pt-0">
+                            <h5>校园环境&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="campus_rating" value="-1" name="campus_rating">
+                    </div>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="dining_rating" class="col-form-label pt-0">
+                            <h5>食堂伙食&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="dining_rating" value="-1" name="dining_rating">
+                    </div>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="dorm_rating" class="col-form-label pt-0">
+                            <h5>宿舍条件&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="dorm_rating" value="-1" name="dorm_rating">
+                    </div>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="administration_rating" class="col-form-label pt-0">
+                            <h5>行政管理&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="administration_rating" value="-1" name="administration_rating">
+                    </div>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="facility_rating" class="col-form-label pt-0">
+                            <h5>校园设施&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="facility_rating" value="-1" name="facility_rating">
+                    </div>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="organization_rating" class="col-form-label pt-0">
+                            <h5>社团活动&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="organization_rating" value="-1" name="organization_rating">
+                    </div>
+                    <div class="form-group col-6 row mx-0 justify-content-center">
+                        <label for="location_rating" class="col-form-label pt-0">
+                            <h5>地理位置&nbsp;&nbsp;&nbsp;&nbsp;</h5></label>
+                        <div class="stars">
+                        </div>
+                        <input type="text" class="col-1 invisible" id="location_rating" value="-1" name="location_rating">
+                    </div>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label for="reviewer_relationship" class="col-form-label">
+                        <h4>与{{school.name}}关系</h4></label>
+                    <select class="form-control" id="reviewer_relationship" name="reviewer_relationship">
+                        <option value="-1">未选择</option>
+                        <option value="1">大一学生</option>
+                        <option value="2">大二学生</option>
+                        <option value="3">大三学生</option>
+                        <option value="4">大四学生</option>
+                        <option value="5">研究生/博士</option>
+                        <option value="6">校友</option>
+                        <option value="7">教职工</option>
+                        <option value="8">其他</option>
+                    </select>
+                </div>
+                <hr />
+                <div class="form-group">
+                    <label for="reviewer_major" class="col-form-label">
+                        <h4>你的专业</h4></label>
+                    <input class="form-control" type="text" placeholder="请填写专业" id="reviewer_major" name="reviewer_major">
+                </div>
+                <br />
+                <br />
+                <div class="row w-100">
+                    <button type="submit" class="btn btn-lg btn-primary col-4 offset-4">提交</button>
+                </div>
+            </form>
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br /> {% include 'foot.html' %}
     </div>
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
@@ -28,34 +158,54 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.js"></script>
     <script src="{% static 'js/particles.js' %}"></script>
     <script src="{% static 'js/zhaoxiao.js' %}"></script>
+    <script src="{% static 'js/review.js' %}"></script>
     <script type="text/javascript">
-    $(function() {
-        $(".5star").rateYo({
-            starWidth: "18px",
-            rating: 5,
-            readOnly: true
-        });
-        $(".4star").rateYo({
-            starWidth: "18px",
-            rating: 4,
-            readOnly: true
-        });
-        $(".3star").rateYo({
-            starWidth: "18px",
-            rating: 3,
-            readOnly: true
-        });
-        $(".2star").rateYo({
-            starWidth: "18px",
-            rating: 2,
-            readOnly: true
-        });
-        $(".1star").rateYo({
-            starWidth: "18px",
-            rating: 1,
-            readOnly: true
-        });
-
+    $(".5star").rateYo({
+        starWidth: "18px",
+        rating: 5,
+        readOnly: true
+    });
+    $(".4star").rateYo({
+        starWidth: "18px",
+        rating: 4,
+        readOnly: true
+    });
+    $(".3star").rateYo({
+        starWidth: "18px",
+        rating: 3,
+        readOnly: true
+    });
+    $(".2star").rateYo({
+        starWidth: "18px",
+        rating: 2,
+        readOnly: true
+    });
+    $(".1star").rateYo({
+        starWidth: "18px",
+        rating: 1,
+        readOnly: true
+    });
+    $(".stars-bg").rateYo({
+        starWidth: "24px",
+        fullStar: true,
+        onSet: function(rating, rateYoInstance) {
+            // $(this).next().value(rating);
+            // console.log($(this).next());
+            // console.log(rating);
+            $(this).next().val(rating);
+            // console.log($(this).next().val());
+        }
+    });
+    $(".stars").rateYo({
+        starWidth: "20px",
+        fullStar: true,
+        onSet: function(rating, rateYoInstance) {
+            // $(this).next().value(rating);
+            // console.log($(this).next());
+            // console.log(rating);
+            $(this).next().val(rating);
+            // console.log($(this).next().val());
+        }
     });
     </script>
 </body>

@@ -12,6 +12,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.2.0/jquery.rateyo.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/zhaoxiao.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/school.css' %}">
+    <style type="text/css">
+        .list_item_5star{
+            background: linear-gradient(to right, #CCCCFF 30%, #ffffff 70%);
+        }
+    </style>
 </head>
 
 <body>
@@ -26,7 +31,7 @@
                 <br />
                 <div class="row">
                     <div class="col-md-10">
-                        <h5><span class="align-baseline" id="totalrate" style="display: inline-block;"></span>,  111 个评价</h5>
+                        <h5><span class="align-baseline" id="totalrate" style="display: inline-block;"></span>, {{ school_info.review_num }} 个评价</h5>
                         <h5>&nbsp;{{ school.administration_dept }}, {{ school.location }}, {{ school.level }}</h5>
                     </div>
                     <div class="col-md-2">
@@ -38,62 +43,56 @@
                 <div class="w-100 row ml-0">
                     <div class="col-4">
                         <div class="rate-circle-total text-white bg-primary">
-                            <p>A+</p>
+                            <p>{{ school_info.overall_rating__avg_level }}</p>
                         </div>
                         <h3 class="w-100" style="text-align: center">总评</h3>
                     </div>
                     <div class="col-8 row ml-0">
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.academic_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">学术氛围</p>
                         </div>
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.campus_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">校园环境</p>
                         </div>
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.dining_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">食堂伙食</p>
                         </div>
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.dorm_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">宿舍条件</p>
                         </div>
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.administration_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">行政管理</p>
                         </div>
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.facility_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">校园设施</p>
                         </div>
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
-                            </div>
-                            <p class="d-inline-block ml-1" style="text-align: center">学术氛围</p>
-                        </div>
-                        <div class="col-4">
-                            <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.organization_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">社团活动</p>
                         </div>
                         <div class="col-4">
                             <div class="rate-circle text-white bg-info d-inline-block">
-                                <p>A+</p>
+                                <p>{{ school_info.location_rating__avg_level }}</p>
                             </div>
                             <p class="d-inline-block ml-1" style="text-align: center">地理位置</p>
                         </div>
@@ -104,7 +103,7 @@
         <br />
         <br />
         <div class="row w-100">
-            <div class="col-3">
+            <div class="col-3 border-top-0 border-left-0 border-bottom-0" style="border: 2px solid gray">
                 <ul class="list-group">
                     <li class="list-group-item justify-content-between">
                         <span class="align-baseline 5star" style="display: inline-block;"></span>
@@ -148,14 +147,13 @@
                                 <p>With supporting text below as a natural lead-in to additional content...</p>
                             </div>
                             <div class="card-text">
-                                <p>With supporting text below as a natural lead-in to additional content...</p>
+                                <p>With supporting text below as a natural lead-in to additional content</p>
                                 <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
                                 <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
                                 <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
                                 <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
                             </div>
-
-                            <button href="#" class="btn btn-sm btn-outline-primary">加载更多</button>
+                            <button href="#" class="btn btn-sm btn-outline-primary more">加载更多</button>
                         </div>
                         <div class="card-footer text-muted">
                             计算机，大一，2 days ago
@@ -189,7 +187,7 @@
     $(function() {
         $("#totalrate").rateYo({
             starWidth: "18px",
-            rating: 3.5,
+            rating: {{ school_info.overall_rating__avg }},
             readOnly: true
         });
         $(".5star").rateYo({
@@ -218,6 +216,19 @@
             readOnly: true
         });
 
+    });
+
+    $(".more").prev().toggle();
+    $(".more").click(function() {
+        console.log("showmore")
+        $(".more").prev().toggle();
+        $(".more").prev().prev().toggle();
+        if ($(".more").html() == "加载更多")
+            $(".more").html("显示摘要");
+        else {
+            $(".more").html("加载更多");
+            $(".more").html("加载更多");
+        }
     });
     </script>
 </body>

@@ -17,7 +17,7 @@
     <div id="particles-js"></div>
     {% include 'nav.html' %}
     <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="container">
+    <div class="container" style="z-index: 1">
         <br />
         <br />
         <br />
@@ -30,22 +30,22 @@
         <br />
         <br />
         <form class="form-inline align-middle" action="/search">
-            <div class="row justify-content-md-center" style="width: 100%">
-                <div class="input-group input-group-lg col-md-6">
+            <div class="row w-100 justify-content-md-center">
+                <div class="input-group input-group-lg col-6">
                     <input type="text" class="form-control input-lg" placeholder="请输入学校名" id="main-search" name="q" />
                     <div class="input-group-btn">
                         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
                         <ul class="dropdown-menu dropdown-menu-right"></ul>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-warning col-md-2"><span style="font-size: 24px">Search</span></button>
+                <button type="submit" class="btn btn-warning col-2"><span style="font-size: 24px">Search</span></button>
             </div>
         </form>
 
     </div>
     {% include 'foot.html' %}
     <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
     <script src="{% static 'js/bootstrap-suggest.js' %}"></script>
     <script src="{% static 'js/particles.js' %}"></script>
     <script src="{% static 'js/zhaoxiao.js' %}"></script>
