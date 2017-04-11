@@ -2,3 +2,4 @@
 */migrations/
 **/.DS_Store
 admin.conf
+env/
