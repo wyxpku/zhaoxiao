@@ -175,3 +175,45 @@ def autocomplete(request):
     retdata = serializers.serialize('json', search_result)
     # retdata['len'] = len(search_result)
     return HttpResponse(retdata, content_type='application/json')
+
+
+def getreviews(school, review_filter, review_sort):
+    reviews = Review.objects.filter(school=school)
+    if review_sort == '1':
+        reviews = reviews.order_by('-review_date')
+    elif review_sort == '2':
+        reviews = reviews.order_by('-overall_rating', '-review_date')
+    elif review_sort == '3':
+        reviews = reviews.order_by('reviewer_major')
+    # print(type(reviews))
+    return reviews
+# 加载评论
+def reviewsapi(request):
+    # print(request.GET)
+    if request.method != 'GET':
+        return HttpResponse('<h5 style="width: 100%;text-align:center;">Error Http Method</h5>')
+    # try:
+    school_id = request.GET.get('school', None)
+    school = School.objects.get(id=school_id)
+    
+    # filter overall_rating
+    #   0: all
+    #   1: 1 star
+    #   2: 2 star
+    #   ...
+    review_filter = request.GET.get('filter', 0)
+    
+    # sort
+    #   1. review time
+    #   2. overall_rating
+    #   3. reviewer major
+    review_sort = request.GET.get('order', 1)
+    # page
+    review_page = request.GET.get('page', 1)
+    print(review_filter, review_sort, review_page)
+    reviews = getreviews(school, review_filter, review_sort)
+    for review in reviews:
+        print(review.id, review.overall_rating, review.review_date, review.reviewer_major)
+    return render(request, 'reviewlist.html')
+    # except Exception as e:
+    #     return HttpResponse(str(e))

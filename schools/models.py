@@ -45,7 +45,7 @@ class Review(models.Model):
     location_rating = models.IntegerField(choices=RATING_CHOICES)
     reviewer_relationship = models.IntegerField(choices=RELATIONSHIP_CHOICES)
     reviewer_major = models.CharField(max_length=64)
-    reviewer_date = models.DateTimeField(auto_now_add=True)
+    review_date = models.DateTimeField(auto_now_add=True)
 
     review_content = models.TextField()
     school = models.ForeignKey(
@@ -55,3 +55,6 @@ class Review(models.Model):
 
     def __str__(self):
         return str(self.id)
+
+    def brefcontent(self):
+        

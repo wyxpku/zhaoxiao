@@ -38,7 +38,7 @@
         <br />
         <br />
         <div class="row w-100 justify-content-center">
-            <form class="col-11 review" action="{{ school.get_absolute_url }}review/" method="POST">
+            <form class="col-11 reviewform" action="{{ school.get_absolute_url }}review/" method="POST">
                 {% csrf_token %}
                 <div class="form-group row w-100">
                     <label class="col-form-label pt-0 px-3" for="overall_rating">

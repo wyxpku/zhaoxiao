@@ -26,4 +26,5 @@ urlpatterns = [
     # url(r'^schools/$', views.school_list),
     url(r'^school/(?P<id>[0-9]+)/review/$', views.review),
     url(r'^autocomplete/', views.autocomplete),
+    url(r'^reviewsapi/', views.reviewsapi),
 ]

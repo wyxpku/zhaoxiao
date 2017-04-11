@@ -1,4 +1,4 @@
-$(".review").submit(function(event) {
+$(".reviewform").submit(function(event) {
     // event.preventDefault();
     var flag = true;
     // var overall_rating = $("#overall_rating").val();
@@ -77,6 +77,7 @@ $(".review").submit(function(event) {
     } else {
         $("#review_content").parent().removeClass("has-danger");
     }
+    console.log(flag);
     if (flag) return true;
     else {
         $('html, body').animate({ scrollTop: 0 }, 'slow');
