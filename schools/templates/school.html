@@ -105,9 +105,9 @@
         <br />
         <div class="row w-100">
             <div class="col-3 border-top-0 border-left-0 border-bottom-0" style="border: 2px solid gray">
-                <div class="w-100 mb-1" style="position: relative;">
+                <div class="w-100 mb-1 starfilter" style="position: relative;" value="5">
                     <div class="progress w-100" style="z-index: -1; height: 40px;">
-                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                     <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
@@ -115,9 +115,9 @@
                         <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">11</span></p>
                     </div>
                 </div>
-                <div class="w-100 mb-1" style="position: relative;">
+                <div class="w-100 mb-1 starfilter" style="position: relative;" value="4">
                     <div class="progress w-100" style="z-index: -1; height: 40px;">
-                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                     <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
@@ -125,9 +125,9 @@
                         <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">111</span></p>
                     </div>
                 </div>
-                <div class="w-100 mb-1" style="position: relative;">
+                <div class="w-100 mb-1 starfilter" style="position: relative;" value="3">
                     <div class="progress w-100" style="z-index: -1; height: 40px;">
-                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                     <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
@@ -135,9 +135,9 @@
                         <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">111</span></p>
                     </div>
                 </div>
-                <div class="w-100 mb-1" style="position: relative;">
+                <div class="w-100 mb-1 starfilter" style="position: relative;" value="2">
                     <div class="progress w-100" style="z-index: -1; height: 40px;">
-                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                     <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
@@ -145,9 +145,9 @@
                         <p class="d-inline-block" style="margin-top: 6px; float: right;"><span class="badge badge-default badge-pill">1111</span></p>
                     </div>
                 </div>
-                <div class="w-100 mb-1" style="position: relative;">
+                <div class="w-100 mb-1 starfilter" style="position: relative;" value="1">
                     <div class="progress w-100" style="z-index: -1; height: 40px;">
-                        <div class="progress-bar justify-content-center align-middle" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%; height: 100%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
                         </div>
                     </div>
                     <div class="my-mid" style="width: 150px; height: 40px; position: absolute; top:0;left: 0;">
@@ -303,16 +303,23 @@
     $(".more").prev().toggle();
     $(".more").click(function() {
         console.log("showmore")
-        $(".more").prev().toggle();
-        $(".more").prev().prev().toggle();
-        if ($(".more").html() == "加载更多")
-            $(".more").html("显示摘要");
+        $(this).prev().toggle();
+        $(this).prev().prev().toggle();
+        if ($(this).html() == "加载更多")
+            $(this).html("显示摘要");
         else {
-            $(".more").html("加载更多");
-            $(".more").html("加载更多");
+            $(this).html("加载更多");
+            $(this).html("加载更多");
         }
     });
     $(".my-mid").css("left", ($(".my-mid").parent().width() - $(".my-mid").width()) / 2);
+    $(".starfilter").click(function(){
+        console.log($(this).attr("value"));
+        $(".progress").removeClass("bg-success");
+        $(".progress-bar").addClass("bg-info");
+        $(this).find(".progress").addClass("bg-success");
+        $(this).find(".progress-bar").removeClass("bg-info");
+    });
     </script>
 </body>
 
