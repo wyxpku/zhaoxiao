@@ -159,7 +159,7 @@
                 <hr />
                 <h5>排序</h5>
                 <select class="custom-select w-100" id="review_order">
-                    <option value="1">评论日期</option>
+                    <option value="1">评论时间</option>
                     <option value="2">评分</option>
                     <option value="3">专业</option>
                 </select>
@@ -226,26 +226,49 @@
             readOnly: true
         });
         $(".my-mid").css("left", ($(".my-mid").parent().width() - $(".my-mid").width()) / 2);
+        $(".page-link").on('click', function(){
+            var page = $(this).attr('value');
+            $.ajax({
+                url: '/reviewsapi/?&school=' + window.school + '&filter=' + window.filter + "&order=" + window.order + '&page=' + page,
+                success: function(data) {
+                    // console.log(data);
+                    console.log(data);
+                    $("#reviewcontainer").html(data);
+                    myconpoments();
+                },
+                error: function(XMLHttpRequest, textStatus){
+                    $("#reviewcontainer").html(XMLHttpRequest + textStatus);
+                }
+            })
+        });
     }
     myconpoments();
+    
     window.school = {{ school.id }}
     window.filter = 0;
     window.order = 1;
-    window.pages = null;
-    window.cur = 1;
     reviewInit();
-    $(".starfilter").click(function() {
+    $(".starfilter").on('click', function() {
         // console.log($(this).attr("value"));
+        if (window.filter == $(this).attr("value")){
+            $(".progress").removeClass("bg-success");
+            $(".progress-bar").addClass("bg-info");
+            window.filter = 0;
+            reviewInit();
+            return;
+        }
         window.filter = $(this).attr("value");
         $(".progress").removeClass("bg-success");
         $(".progress-bar").addClass("bg-info");
         $(this).find(".progress").addClass("bg-success");
         $(this).find(".progress-bar").removeClass("bg-info");
-        console.log(window.school, window.filter, window.order, window.pages, window.cur);
+        // console.log(window.school, window.filter, window.order, window.pages, window.cur);
+        reviewInit();
     });
     $("#review_order").on("change", function() {
         window.order = $(this).val();
-        console.log(window.filter, window.order, window.pages, window.cur);
+        reviewInit();
+        // console.log(window.filter, window.order, window.pages, window.cur);
     });
 
     function reviewInit() {
@@ -255,6 +278,9 @@
                 // console.log(data);
                 $("#reviewcontainer").html(data);
                 myconpoments();
+            },
+            error: function(XMLHttpRequest, textStatus){
+                $("#reviewcontainer").html(XMLHttpRequest + textStatus);
             }
         })
     }

@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from schools.models import School, Review
 from django.core import serializers
 from django.db.models import Avg
-
+import math
 
 import jieba
 
@@ -113,7 +113,9 @@ def school_detail(request, id):
             if v is None:
                 print('fuck')
                 info[k] = 0
-            info[k + '_level'] = get_level(0)
+                info[k + '_level'] = 'N'
+            else:
+                info[k + '_level'] = get_level(v)
     except Exception as e:
         print(e)
         return render(request, 'school.html', {'school': None})
@@ -194,11 +196,12 @@ def getreviews(school, review_filter, review_order):
             school=school,
             overall_rating=review_filter
         )
-    if review_order == '1':
+    print(type(review_order))
+    if review_order == 1:
         reviews = reviews.order_by('-review_date')
-    elif review_order == '2':
+    elif review_order == 2:
         reviews = reviews.order_by('-overall_rating', '-review_date')
-    elif review_order == '3':
+    elif review_order == 3:
         reviews = reviews.order_by('reviewer_major', '-review_date')
     # print(type(reviews))
     return reviews
@@ -229,10 +232,42 @@ def reviewsapi(request):
     review_order = request.GET.get('order', 1)
     # page
     review_page = request.GET.get('page', 1)
+
+    review_page = int(review_page)
+    review_order = int(review_order)
+    review_filter = int(review_filter)
+    
     # print(review_filter, review_order, review_page)
     reviews = getreviews(school, review_filter, review_order)
-    # print(len(reviews))
+    perpage = 10
+    retdata = {}
+    totalnum = len(reviews)
+    
+    retdata['totalnum'] = totalnum
+    retdata['pages'] = math.ceil(totalnum / perpage)
+    if int(review_page) > retdata['pages']:
+        return HttpResponse('<p style="width: 100%;text-align: center">暂无评论</p>')
+    
+    retdata['p'] = review_page - 1
+    retdata['n'] = review_page + 1
+    if review_page == 1:
+        retdata['prev'] = 'disabled'
+    
+    if retdata['pages'] == review_page:
+        retdata['reviews'] = reviews[(review_page - 1) * perpage:]
+        retdata['next'] = 'disabled'
+    else:
+        retdata['reviews'] = reviews[(review_page - 1) * perpage: review_page * perpage]
 
-    return render(request, 'reviewlist.html')
+    if review_order == 1:
+        retdata['order_info'] = '按评论时间排序：'
+    elif review_order == 2:
+        retdata['order_info'] = '按总评排序：'
+    elif review_order == 3:
+        retdata['order_info'] = '按专业排序：'
+    retdata['cur'] = review_page
+
+    # print(retdata)
+    return render(request, 'reviewlist.html', retdata)
     # except Exception as e:
     #     return HttpResponse(str(e))

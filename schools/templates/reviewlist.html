@@ -1,77 +1,41 @@
 <div class="reviews col-11 offset-md-1">
-    <p>按日期排序：</p>
+    <p>共 {{totalnum}} 条，{{ order_info }}</p>
+    {% for review in reviews %}
     <div class="card mb-2">
         <div class="card-block">
-            <h5 class="card-title">总评：<span class="align-baseline 5star" style="display: inline-block;"></span></h5>
+            <h5 class="card-title">总评：<span class="align-baseline {{review.overall_rating}}star" style="display: inline-block;"></span></h5>
             <div class="card-text">
-                <p>With supporting text below as a natural lead-in to additional content...</p>
+                <p style="word-wrap:break-word; word-break:normal;">{{review.brefcontent}}</p>
             </div>
             <div class="card-text">
-                <p>With supporting text below as a natural lead-in to additional content</p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
+                <p style="word-wrap:break-word; word-break:normal;">{{review.review_content}}</p>
+                <p>学术氛围：<span class="align-baseline {{review.academic_rating}}star" style="display: inline-block;"></span></p>
+                <p>校园环境：<span class="align-baseline {{review.campus_rating}}star" style="display: inline-block;"></span></p>
+                <p>食堂伙食：<span class="align-baseline {{review.dining_rating}}star" style="display: inline-block;"></span></p>
+                <p>宿舍条件：<span class="align-baseline {{review.dorm_rating}}star" style="display: inline-block;"></span></p>
+                <p>行政管理：<span class="align-baseline {{review.administration_rating}}star" style="display: inline-block;"></span></p>
+                <p>校园设施：<span class="align-baseline {{review.facility_rating}}star" style="display: inline-block;"></span></p>
+                <p>社团活动：<span class="align-baseline {{review.organization_rating}}star" style="display: inline-block;"></span></p>
+                <p>地理位置：<span class="align-baseline {{review.location_rating}}star" style="display: inline-block;"></span></p>
             </div>
-            <button href="#" class="btn btn-sm btn-outline-primary more">加载更多</button>
+            <button class="btn btn-sm btn-outline-primary more">加载更多</button>
         </div>
         <div class="card-footer text-muted">
-            计算机，大一，2 days ago
+            <p>专业: {{review.reviewer_major}}，关系：{{ review.reviewer_relationship}}，时间：{{ review.review_date }}</p>
         </div>
     </div>
-    <div class="card mb-2">
-        <div class="card-block">
-            <h5 class="card-title">总评：<span class="align-baseline 5star" style="display: inline-block;"></span></h5>
-            <div class="card-text">
-                <p>With supporting text below as a natural lead-in to additional content...</p>
-            </div>
-            <div class="card-text">
-                <p>With supporting text below as a natural lead-in to additional content</p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-            </div>
-            <button href="#" class="btn btn-sm btn-outline-primary more">加载更多</button>
-        </div>
-        <div class="card-footer text-muted">
-            计算机，大一，2 days ago
-        </div>
-    </div>
-    <div class="card mb-2">
-        <div class="card-block">
-            <h5 class="card-title">总评：<span class="align-baseline 5star" style="display: inline-block;"></span></h5>
-            <div class="card-text">
-                <p>With supporting text below as a natural lead-in to additional content...</p>
-            </div>
-            <div class="card-text">
-                <p>With supporting text below as a natural lead-in to additional content</p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-                <p>学术：<span class="align-baseline 5star" style="display: inline-block;"></span></p>
-            </div>
-            <button href="#" class="btn btn-sm btn-outline-primary more">加载更多</button>
-        </div>
-        <div class="card-footer text-muted">
-            计算机，大一，2 days ago
-        </div>
-    </div>
+    {% endfor %}
 </div>
 <br />
 <br />
 <nav class="col-12" aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
+        <li class="page-item {{prev}}">
+            <a class="page-link" href="#" tabindex="-1" value="{{p}}">Previous</a>
         </li>
-        <li class="page-item disabled"><a class="page-link" href="#">Page 1 of 24</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
+        <li class="page-item disabled"><a class="page-link" href="#">Page {{cur}} of {{pages}}</a></li>
+        <li class="page-item {{ next }}">
+            <a class="page-link" href="#" value="{{n}}">Next</a>
         </li>
     </ul>
 </nav>
-<br />
-<br />
-<br />
-<br />
