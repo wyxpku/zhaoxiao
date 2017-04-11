@@ -57,4 +57,7 @@ class Review(models.Model):
         return str(self.id)
 
     def brefcontent(self):
-        
+        if len(self.review_content) >= 100:
+            return self.review_content[:101] + '...'
+        else:
+            return self.review_content

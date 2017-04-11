@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from schools.models import School, Review
 from django.core import serializers
 from django.db.models import Avg
@@ -7,9 +7,11 @@ from django.db.models import Avg
 
 import jieba
 
+
 # 主页面
 def index(request):
     return render(request, 'index.html')
+
 
 # 搜索结果页面
 def search(request):
@@ -26,7 +28,7 @@ def search(request):
         print("keyword:", keyword)
         for school in schools:
             if keyword in school.name:
-                if not school in search_result:
+                if school not in search_result:
                     search_result.append(school)
 
     return render(
@@ -38,6 +40,7 @@ def search(request):
             "schools": search_result,
         }
     )
+
 
 def get_school_info(id):
     try:
@@ -55,25 +58,23 @@ def get_school_info(id):
         info.update(reviews.aggregate(Avg('organization_rating')))
         info.update(reviews.aggregate(Avg('location_rating')))
 
-        # info = {
-        #     'review_num': len(reviews),
-        #     'overall_rating': reviews.aggregate(Avg('overall_rating'))['overall_rating__avg'],
-        #     'academic_rating': reviews.aggregate(Avg('academic_rating')),
-        #     'campus_rating': reviews.aggregate(Avg('campus_rating')),
-        #     'dining_rating': reviews.aggregate(Avg('dining_rating')),
-        #     'dorm_rating': reviews.aggregate(Avg('dorm_rating')),
-        #     'administration_rating': reviews.aggregate(Avg('administration_rating')),
-        #     'facility_rating': reviews.aggregate(Avg('facility_rating')),
-        #     'organization_rating': reviews.aggregate(Avg('organization_rating')),
-        #     'location_rating': reviews.aggregate(Avg('location_rating')),
-        # }
+        info['stars'] = [
+            len(reviews.filter(overall_rating=i)) for i in range(1, 6)
+        ]
+        if len(reviews) == 0:
+            info['stars_p'] = [0 for i in range(5)]
+        else:
+            info['stars_p'] = [
+                item / len(reviews) * 100 for item in info['stars']
+            ]
         return info
     except Exception as e:
         print(e)
         return None
 
+
 def get_level(rate):
-    print(type(rate))
+    # print(type(rate))
     if rate >= 4.5:
         return 'A+'
     if rate >= 4.0:
@@ -90,11 +91,12 @@ def get_level(rate):
         return 'D+'
     if rate >= 1.0:
         return 'D'
-    if rate >= '0.5':
+    if rate >= 0.5:
         return 'E+'
-    if rate > '0':
+    if rate > 0:
         return 'E'
     return 'N'
+
 
 # 学校详情页面
 def school_detail(request, id):
@@ -103,23 +105,29 @@ def school_detail(request, id):
         info = get_school_info(id)
         preinfo = info.copy()
         for k, v in preinfo.items():
+            print(k, v, type(v))
+            if type(v) is list:
+                continue
             if k == 'review_num':
                 continue
-            info[k + '_level'] = get_level(v)
-        print(info)
+            if v is None:
+                print('fuck')
+                info[k] = 0
+            info[k + '_level'] = get_level(0)
     except Exception as e:
         print(e)
-        retdata = {
-            'status': False,
-            'info': str(e),
-        }
         return render(request, 'school.html', {'school': None})
 
     if request.method == 'GET':
         # serializer = SchoolSerializer(school)
         # retdata = serializer.data
         # retdata['status'] = True
-        return render(request, 'school.html', {'school': school, 'school_info': info})
+        retdata = {
+            'school': school,
+            'school_info': info,
+        }
+        return render(request, 'school.html', retdata)
+
 
 # 评论页面
 def review(request, id):
@@ -127,10 +135,7 @@ def review(request, id):
         try:
             school = School.objects.get(id=id)
         except Exception as e:
-            retdata = {
-                'status': False,
-                'info': str(e),
-            }
+            print(e)
             return render(request, 'school.html', {'school': None})
 
         return render(request, 'review.html', {'school': school})
@@ -143,12 +148,14 @@ def review(request, id):
             newreview.campus_rating = request.POST['campus_rating']
             newreview.dining_rating = request.POST['dining_rating']
             newreview.dorm_rating = request.POST['dorm_rating']
-            newreview.administration_rating = request.POST['administration_rating']
+            newreview.administration_rating =\
+                request.POST['administration_rating']
             newreview.facility_rating = request.POST['facility_rating']
             newreview.organization_rating = request.POST['organization_rating']
             newreview.location_rating = request.POST['location_rating']
             newreview.facility_rating = request.POST['facility_rating']
-            newreview.reviewer_relationship = request.POST['reviewer_relationship']
+            newreview.reviewer_relationship =\
+                request.POST['reviewer_relationship']
             newreview.reviewer_major = request.POST['reviewer_major']
             newreview.review_content = request.POST['review_content']
 
@@ -177,43 +184,55 @@ def autocomplete(request):
     return HttpResponse(retdata, content_type='application/json')
 
 
-def getreviews(school, review_filter, review_sort):
-    reviews = Review.objects.filter(school=school)
-    if review_sort == '1':
+def getreviews(school, review_filter, review_order):
+    reviews = None
+    review_filter = int(review_filter)
+    if review_filter == 0:
+        reviews = Review.objects.filter(school=school)
+    else:
+        reviews = Review.objects.filter(
+            school=school,
+            overall_rating=review_filter
+        )
+    if review_order == '1':
         reviews = reviews.order_by('-review_date')
-    elif review_sort == '2':
+    elif review_order == '2':
         reviews = reviews.order_by('-overall_rating', '-review_date')
-    elif review_sort == '3':
-        reviews = reviews.order_by('reviewer_major')
+    elif review_order == '3':
+        reviews = reviews.order_by('reviewer_major', '-review_date')
     # print(type(reviews))
     return reviews
+
+
 # 加载评论
 def reviewsapi(request):
     # print(request.GET)
     if request.method != 'GET':
-        return HttpResponse('<h5 style="width: 100%;text-align:center;">Error Http Method</h5>')
+        return HttpResponse(
+            '<h5 style="width: 100%;text-align:center;">Error Http Method</h5>'
+        )
     # try:
     school_id = request.GET.get('school', None)
     school = School.objects.get(id=school_id)
-    
+
     # filter overall_rating
     #   0: all
     #   1: 1 star
     #   2: 2 star
     #   ...
     review_filter = request.GET.get('filter', 0)
-    
+
     # sort
     #   1. review time
     #   2. overall_rating
     #   3. reviewer major
-    review_sort = request.GET.get('order', 1)
+    review_order = request.GET.get('order', 1)
     # page
     review_page = request.GET.get('page', 1)
-    print(review_filter, review_sort, review_page)
-    reviews = getreviews(school, review_filter, review_sort)
-    for review in reviews:
-        print(review.id, review.overall_rating, review.review_date, review.reviewer_major)
+    # print(review_filter, review_order, review_page)
+    reviews = getreviews(school, review_filter, review_order)
+    # print(len(reviews))
+
     return render(request, 'reviewlist.html')
     # except Exception as e:
     #     return HttpResponse(str(e))
