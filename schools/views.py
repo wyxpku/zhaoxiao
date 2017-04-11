@@ -20,12 +20,12 @@ def search(request):
 
     keywords = [str(item) for item in jieba.cut(querystr, cut_all=False)]
     keywords.sort(key=lambda x: -len(x))
-    print(keywords)
+    # print(keywords)
     search_result = []
     schools = School.objects.all().order_by('id')
 
     for keyword in keywords:
-        print("keyword:", keyword)
+        # print("keyword:", keyword)
         for school in schools:
             if keyword in school.name:
                 if school not in search_result:
@@ -105,13 +105,11 @@ def school_detail(request, id):
         info = get_school_info(id)
         preinfo = info.copy()
         for k, v in preinfo.items():
-            print(k, v, type(v))
             if type(v) is list:
                 continue
             if k == 'review_num':
                 continue
             if v is None:
-                print('fuck')
                 info[k] = 0
                 info[k + '_level'] = 'N'
             else:
@@ -136,13 +134,29 @@ def review(request, id):
     if request.method == 'GET':
         try:
             school = School.objects.get(id=id)
+            info = get_school_info(id)
+            preinfo = info.copy()
+            for k, v in preinfo.items():
+                if type(v) is list:
+                    continue
+                if k == 'review_num':
+                    continue
+                if v is None:
+                    info[k] = 0
+                    info[k + '_level'] = 'N'
+                else:
+                    info[k + '_level'] = get_level(v)
         except Exception as e:
             print(e)
             return render(request, 'school.html', {'school': None})
-
-        return render(request, 'review.html', {'school': school})
+        # print(info)
+        retdata = {
+            'school': school,
+            'school_info': info,
+        }
+        return render(request, 'review.html', retdata)
     elif request.method == 'POST':
-        print(request.POST)
+        # print(request.POST)
         newreview = Review()
         try:
             newreview.overall_rating = request.POST['overall_rating']
@@ -196,7 +210,7 @@ def getreviews(school, review_filter, review_order):
             school=school,
             overall_rating=review_filter
         )
-    print(type(review_order))
+    # print(type(review_order))
     if review_order == 1:
         reviews = reviews.order_by('-review_date')
     elif review_order == 2:

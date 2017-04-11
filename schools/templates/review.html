@@ -26,7 +26,7 @@
                 <br />
                 <div class="row">
                     <div class="col-md-10">
-                        <h5><span class="align-baseline 3star" id="totalrate" style="display: inline-block;"></span>,  111 个评价</h5>
+                        <h5><span class="align-baseline" id="totalrate" style="display: inline-block;"></span>,  {{school_info.review_num}} 个评价</h5>
                         <h5>&nbsp;{{ school.administration_dept }}, {{ school.location }}, {{ school.level }}</h5>
                     </div>
                     <div class="col-md-2">
@@ -160,6 +160,11 @@
     <script src="{% static 'js/zhaoxiao.js' %}"></script>
     <script src="{% static 'js/review.js' %}"></script>
     <script type="text/javascript">
+    $("#totalrate").rateYo({
+        starWidth: "18px",
+        rating: {{ school_info.overall_rating__avg }},
+        readOnly: true
+    });
     $(".5star").rateYo({
         starWidth: "18px",
         rating: 5,
