@@ -1,14 +1,5 @@
-# zhaoxiao
+# 找校网
 
-运行说明：
+一个致力于提供大学客观评价的网站，基于Python+Django+Bootstrap开发
 
-在windows下，打开cmd
-进入项目根目录，输入：.\env\Scripts\activate
-输入：python manage.py runserver
-
-访问: localhost:8000 即可。
-可以尝试搜索：北京大学，里面我写了几个测试评论。
-
-退出在cmd中输入ctrl+c
-
-有一个管理员页面：localhost:8000/admin，账号密码在admin.conf文件中
+![演示GIF](./demo.gif)
